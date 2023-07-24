@@ -1,8 +1,7 @@
-import { useCallback } from "react";
-import { AppProvider } from "@shopify/polaris";
 import { useNavigate } from "@shopify/app-bridge-react";
+import { AppProvider } from "@shopify/polaris";
 import "@shopify/polaris/build/esm/styles.css";
-import { getPolarisTranslations } from "../../utils/i18nUtils";
+import { useCallback } from "react";
 
 function AppBridgeLink({ url, children, external, ...rest }) {
   const navigate = useNavigate();
@@ -48,11 +47,5 @@ function AppBridgeLink({ url, children, external, ...rest }) {
  *
  */
 export function PolarisProvider({ children }) {
-  const translations = getPolarisTranslations();
-
-  return (
-    <AppProvider i18n={translations} linkComponent={AppBridgeLink}>
-      {children}
-    </AppProvider>
-  );
+  return <AppProvider linkComponent={AppBridgeLink}>{children}</AppProvider>;
 }
